@@ -5,6 +5,8 @@ import static org.springframework.http.HttpStatus.*
 
 class VoitureController {
 
+    XmlExportVoitureService xmlExportVoitureService
+
     VoitureService voitureService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
@@ -96,4 +98,14 @@ class VoitureController {
             '*'{ render status: NOT_FOUND }
         }
     }
+
+    def exportXml(Long id){
+
+        def xmlContent = xmlExportVoitureService.exportSingleCarToxml(id)
+        response.contentType = "application/xml"
+        response.setHeader("Content-disposition","attachement; filename=parkingCar-${id}.xml")
+        render xmlContent
+    }
+
+
 }
