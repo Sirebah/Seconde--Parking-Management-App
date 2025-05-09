@@ -1,11 +1,22 @@
 package ParkingManag
 
-import groovy.transform.CompileStatic
+import groovy.xml.MarkupBuilder
 
-@CompileStatic
+
 class XmlExportPlaceService {
 
-    def doSomething() {
+    def exportOnexmlPlace(long id){
+        def place = PlaceDeParking.get(id)
+        if(!place) return "<error>not place found</error>"
 
+        def writer = new StringWriter()
+        def xml = new MarkupBuilder(writer)
+
+        xml.parkingPlace{
+            "${'id'}"(place.id)
+            "${'numero'}"(place.numero)
+            "${'estOccupee'}"(place.estOccupee)
+        }
+        return writer.toString()
     }
 }

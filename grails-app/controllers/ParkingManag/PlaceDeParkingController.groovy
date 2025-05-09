@@ -6,6 +6,7 @@ import static org.springframework.http.HttpStatus.*
 class PlaceDeParkingController {
 
     PlaceDeParkingService placeDeParkingService
+    XmlExportPlaceService xmlExportPlaceService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -96,4 +97,15 @@ class PlaceDeParkingController {
             '*'{ render status: NOT_FOUND }
         }
     }
+    def exportXml(Long id){
+
+        def xmlContent = xmlExportPlaceService.exportOnexmlPlace(id)
+
+        response.contentType = "application/xml"
+        response.setHeader("content-disposition", "attachement; filename=reservation-${id}.xml")
+        render xmlContent
+
+    }
+
+
 }

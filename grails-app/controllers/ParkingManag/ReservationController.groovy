@@ -7,6 +7,7 @@ import static org.springframework.http.HttpStatus.*
 class ReservationController {
 
     ReservationService reservationService
+    XmlExportReservationService xmlExportReservationService
 
     static allowedMethods = [save: "POST", update: "PUT", delete: "DELETE"]
 
@@ -19,7 +20,7 @@ class ReservationController {
         respond reservationService.get(id)
     }
 
-    def create() {
+    def     create() {
         respond new Reservation(params)
     }
 
@@ -96,5 +97,15 @@ class ReservationController {
             }
             '*'{ render status: NOT_FOUND }
         }
+    }
+
+    def exportXml(Long id){
+
+        def xmlContent = xmlExportReservationService.exportSingleReservation(id)
+
+        response.contentType = "application/xml"
+        response.setHeader("content-disposition", "attachement; filename=reservation-${id}.xml")
+        render xmlContent
+
     }
 }
