@@ -13,12 +13,12 @@ class XmlExportVoitureService {
         def xml = new MarkupBuilder(writer)
 
         xml.voiture{
-            mkp.yieldUnescaped"""
-                <id>${car.id}</id>
-                <immatriculation>${car.immatriculation}</immatriculation>
-                <marque>${car.marque}</marque>
-                <proprietaire>${car.proprietaire}</proprietaire>
-            """
+            "${'id'}"(car.id)
+            "${'immatriculation'}"(car.immatriculation)
+            "${'marque'}"(car.marque)
+            "${'proprietaire'}"(car.proprietaire)
+
+
         }
 
              return writer.toString()

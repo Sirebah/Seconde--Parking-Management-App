@@ -6,12 +6,12 @@ class Reservation {
     Voiture voiture
     PlaceDeParking place
     LocalDateTime dateEntree = LocalDateTime.now()
-   // LocalDateTime dateSortie
+
 
     static constraints = {
         voiture nullable: false
         place nullable: false
-        //dateSortie nullable: true
+
     }
 
     String toString() {
