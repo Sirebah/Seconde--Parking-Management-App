@@ -3,6 +3,7 @@ info:
     name: '@info.app.name@'
     version: '@info.app.version@'
     grailsVersion: '@info.app.grailsVersion@'
+
 grails:
   mime:
     disable:
@@ -92,3 +93,7 @@ hibernate:
     queries: false
     use_second_level_cache: false
     use_query_cache: false
+spring:
+  h2:
+    console:
+      enabled: true
