@@ -17,7 +17,7 @@ class XmlExportVoitureService {
             "${'immatriculation'}"(car.immatriculation)
             "${'marque'}"(car.marque)
             "${'proprietaire'}"(car.proprietaire)
-
+            "${'year'}"(car.year)
 
         }
 
