@@ -1,11 +1,19 @@
 package ParkingManag
 
 import grails.validation.ValidationException
+import org.springframework.web.multipart.MultipartFile
+import org.springframework.web.multipart.MultipartHttpServletRequest
+
+//import parkingmanag.VoitureImportService
+
+
 import static org.springframework.http.HttpStatus.*
 
 class VoitureController {
 
     XmlExportVoitureService xmlExportVoitureService
+    //VoitureImportService voitureImportService
+    ImportXmlVoitureService importXmlVoitureService
 
     VoitureService voitureService
 
@@ -99,6 +107,7 @@ class VoitureController {
         }
     }
 
+
     def exportXml(Long id){
 
         def xmlContent = xmlExportVoitureService.exportSingleCarToxml(id)
@@ -106,6 +115,31 @@ class VoitureController {
         response.setHeader("Content-disposition","attachement; filename=parkingCar-${id}.xml")
         render xmlContent
     }
+
+    def importFromXml() {
+        // Vérifier que la requête est bien multipart
+        if (!(request instanceof MultipartHttpServletRequest)) {
+            flash.message = "Aucun fichier reçu (la requête n'est pas de type multipart)."
+            respond new Voiture(), view: 'create'
+            return
+        }
+
+        // Cast en MultipartHttpServletRequest pour accéder à getFile()
+        MultipartHttpServletRequest multiReq = (MultipartHttpServletRequest) request
+        MultipartFile xmlFile = multiReq.getFile('xmlFile')
+
+        try {
+            Voiture voiture = importXmlVoitureService.importFromXml(xmlFile)
+            // Renvoie vers le formulaire create.gsp prérempli
+            respond voiture, view: 'create'
+        } catch (IllegalArgumentException e) {
+            flash.message = "Erreur d’import XML : ${e.message}"
+            respond new Voiture(), view: 'create'
+        }
+    }
+
+
+
 
 
 }
