@@ -55,9 +55,9 @@
                 </g:form>
                 <br/><hr/><br/>
                 <g:form controller="voiture" action="importFromXml" enctype="multipart/form-data" method="POST">
-                    <label for="xmlFile">Importer un fichier XML :</label>
+                    <label for="xmlFile">Import a XML file :</label>
                     <input type="file" name="xmlFile" id="xmlFile" accept=".xml" required />
-                    <g:submitButton name="import" value="Importer XML" />
+                    <g:submitButton name="import" value="Import XML" />
                 </g:form>
             </div>
         </section>
