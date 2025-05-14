@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta name="layout" content="main"/>
-    <title>Reservation - Home</title>
+    <title><g:message code="reservation.home.title" /></title>
     <style>
 
     body{
@@ -37,14 +37,14 @@
 </head>
 <body>
 <div class="welcome-message">
-    <h1>Welcome to My parking Application</h1>
-    <p>A simple Parking management application with Grails and Groovy</p>
+    <h1><g:message code="welcome.message" /></h1>
+    <p><g:message code="app.description" /></p>
 </div>
 
 <div class="action-buttons">
-    <a href="${createLink(controller:'PlaceDeParking', action:'index')}" class="action-button">Place</a>
-    <a href="${createLink(controller:'Reservation', action:'index')}" class="action-button">Reservation</a>
-    <a href="${createLink(controller:'Voiture', action:'index')}" class="action-button">Voiture</a>
+    <a href="${createLink(controller:'PlaceDeParking', action:'index')}" class="action-button"><g:message code="place.button" /></a>
+    <a href="${createLink(controller:'Reservation', action:'index')}" class="action-button"><g:message code="reservation.button" /></a>
+    <a href="${createLink(controller:'Voiture', action:'index')}" class="action-button"><g:message code="car.button" /></a>
 </div>
 </body>
 </html>

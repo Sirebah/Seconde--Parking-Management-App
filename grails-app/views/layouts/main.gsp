@@ -29,6 +29,9 @@
         <div class="collapse navbar-collapse" aria-expanded="false" style="height: 0.8px;" id="navbarContent">
             <ul class="nav navbar-nav ml-auto">
                 <g:pageProperty name="page.nav"/>
+               <a href="?lang=fr">Français</a>
+               <a href="?lang=en">English</a>
+
             </ul>
         </div>
     </div>
