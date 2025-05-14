@@ -1,6 +1,0 @@
-#Fri, 09 May 2025 16:02:09 +0000
-
-info.app.version=0.1
-info.app.name=simple-CRUD-parking-management
-grails.env=production
-info.app.grailsVersion=6.2.3
