@@ -40,24 +40,37 @@
                 </g:hasErrors>
                 <g:form resource="${voiture}" method="POST">
                     <fieldset class="form">
-                        <f:field bean="voiture" property="immatriculation" id="immatriculation" />
-                        <f:field bean="voiture" property="marque" id="marque" />
-                        <f:field bean="voiture" property="proprietaire" id="proprietaire" />
+                        <div class="fieldcontain ${hasErrors(bean: voiture, field: 'immatriculation', 'error')}">
+                            <f:field bean="voiture" property="immatriculation" />
+                            <g:fieldError bean="voiture" field="immatriculation" />
+                        </div>
+
+                        <div class="fieldcontain ${hasErrors(bean: voiture, field: 'marque', 'error')}">
+                            <f:field bean="voiture" property="marque" />
+                            <g:fieldError bean="voiture" field="marque" />
+                        </div>
+
+                        <div class="fieldcontain ${hasErrors(bean: voiture, field: 'proprietaire', 'error')}">
+                            <f:field bean="voiture" property="proprietaire" />
+                            <g:fieldError bean="voiture" field="proprietaire" />
+                        </div>
+
                         <div class="fieldcontain ${hasErrors(bean: voiture, field: 'year', 'error')}">
-                            <label for="year"><g:message code="voiture.year.label" default="Année"/><span class="required">*</span></label>
+                            <label for="year"><g:message code="voiture.year.label" default="Année" /><span class="required">*</span></label>
                             <input type="number" name="year" id="year" value="${voiture?.year}" min="1986" max="2030" step="1" required="required" />
                             <g:fieldError bean="voiture" field="year" />
                         </div>
                     </fieldset>
+
                     <fieldset class="buttons">
                         <g:submitButton name="create" class="save" value="${message(code: 'default.button.create.label', default: 'Create')}" />
                     </fieldset>
                 </g:form>
                 <br/><hr/><br/>
                 <g:form controller="voiture" action="importFromXml" enctype="multipart/form-data" method="POST">
-                    <label for="xmlFile">Import a XML file :</label>
+                    <label for="xmlFile"><g:message code="default.import.label" default="Import a XML file :" /></label>
                     <input type="file" name="xmlFile" id="xmlFile" accept=".xml" required />
-                    <g:submitButton name="import" value="Import XML" />
+                    <g:submitButton name="import" value="${message(code: 'default.button.import.label', default: 'Import XML')}" />
                 </g:form>
             </div>
         </section>
